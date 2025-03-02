@@ -1,0 +1,4 @@
+Data:
+  BullsData:
+    BullsUrl: https://www.nba.com/bulls/
+    CsvFilePath: DuplicateHyperlinks.csv

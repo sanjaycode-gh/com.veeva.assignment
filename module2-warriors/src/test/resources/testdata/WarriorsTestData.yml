@@ -1,0 +1,9 @@
+Data:
+  WarriorsData:
+    WarriorsUrl: https://www.nba.com/warriors
+    NewsMenu: News & Features
+    NewsHeader: NEWS
+    FeedType: video
+    Time: 3d
+    Product: Jackets
+    SubMenu: Men

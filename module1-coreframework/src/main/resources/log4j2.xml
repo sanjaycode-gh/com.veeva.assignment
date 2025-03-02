@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <!-- Log file path -->
+        <Property name="logPath">logs</Property>
+
+        <!-- Pattern for unique log files: ScenarioName + Timestamp + ThreadID -->
+        <Property name="logFilePattern">${logPath}/log_${date:yyyyMMdd-HHmmss}_${ctx:scenarioName}_${ctx:threadId}.log</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <!-- File Appender for Parallel Execution -->
+        <RollingFile name="ScenarioFileAppender" fileName="${logFilePattern}"
+                     filePattern="${logFilePattern}.%i.gz">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="ScenarioFileAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>
