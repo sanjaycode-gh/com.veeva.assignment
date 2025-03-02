@@ -68,8 +68,7 @@ project-root/
 #### Installation Steps:
 1. Clone the repository
    ```sh
-   git clone https://github.com/your-repo/cucumber-bdd-framework.git
-   cd cucumber-bdd-framework
+   git clone https://github.com/sanjaycode-gh/com.veeva.assignment.git
    ```
 2. Run tests using Maven and Install dependencies
    ```sh
