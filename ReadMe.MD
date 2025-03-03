@@ -89,6 +89,7 @@ project-root/
 - **Log4j2-based Logging**
 - **Cucumber MasterThought for detailed insights** 
 - ** Respective modules Cucumber reports are available at "target/cucumber-reports" folder"
+- ** if any reports are generated in tests are attached to the after scenario hooks"
 
 ### 🔄 CI/CD Integration
 - **Jenkins integration** for automated test execution
