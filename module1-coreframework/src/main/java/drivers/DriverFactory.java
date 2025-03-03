@@ -14,7 +14,8 @@ import java.net.URL;
 import java.time.Duration;
 
 public class DriverFactory {
-//    private static ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
+
+    //Various browser drivers are initialized based on the browser parameter passed
 
     public static WebDriver initializeDriver(String browser) {
 

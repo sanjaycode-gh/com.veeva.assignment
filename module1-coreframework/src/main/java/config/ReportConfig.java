@@ -24,7 +24,7 @@ public class ReportConfig {
         config.addClassifications("Platform", System.getProperty("os.name"));
         config.addClassifications("Environment", "QA");
 
-// Capture browser details dynamically
+        // Capture browser details dynamically
         String browser = System.getProperty("browser", "Chrome"); // Default is Chrome
         config.addClassifications("Browser", browser);
 

@@ -15,6 +15,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import pageobject.BasePage;
+import utilities.FileUtils;
 import utilities.YamlReader;
 
 import java.io.File;
@@ -26,31 +27,36 @@ import java.util.Date;
 
 public class Hooks {
 
+    //Hooks class is used to initialize and teardown the driver and log the scenario details
+
     private WebDriver driver;
     private final Context context;
     private static final Logger logger = LogManager.getLogger(Hooks.class);
-    private static final ThreadLocal<Context> testContextThreadLocal = new ThreadLocal<>(); // added
+    private static final ThreadLocal<Context> testContextThreadLocal = new ThreadLocal<>();
+    FileUtils fileUtils;// added
     public Hooks(Context context){
         this.context = context;
+
     }
 
 
     @Before
     public void initialize(Scenario scenario){
+        fileUtils = new FileUtils();
         context.initializeLogFile(scenario);
         testContextThreadLocal.set(context);//added
         LogManager.getLogger(Hooks.class).info("Starting scenario: " + scenario.getName());
 
-//        context.initializeLogging(scenario);
         String browser = Context.getBrowser();
         driver = DriverFactory.initializeDriver(browser);
         context.driver = driver;
-//        logger.info("==== STARTING SCENARIO: " + scenario.getName() + " ====");
+
 
     }
 
     @After
     public void teardown(Scenario scenario){
+
         driver.quit();
         logger.info("==== ENDING SCENARIO: " + scenario.getName() + " ====");
 
@@ -59,7 +65,8 @@ public class Hooks {
             scenario.attach(screenshot, "image/png", "Failed Screenshot");
         }
         if (scenario.getName().contains("Adding mens jackets")) {  // Attach only for this scenario
-            String filePath = "src/test/java/output.txt";
+            String filePath = fileUtils.getFilePath();
+            System.out.println(filePath);//
             try {
                 byte[] outputTextFile = Files.readAllBytes(Paths.get(filePath));
                 scenario.attach(outputTextFile, "text/plain", "Product_Price_And_Title_Text_File");
@@ -67,16 +74,20 @@ public class Hooks {
                 logger.info("failed while attaching the txt file to report");
             }
         }
+
+        else if(scenario.getName().contains("Saving all the hyperlinks")){
+            String filePath = fileUtils.getFilePath();
+            System.out.println(filePath);//
+            try {
+                byte[] outputTextFile = Files.readAllBytes(Paths.get(filePath));
+                scenario.attach(outputTextFile, "text/csv", "Duplicate_HyperLinks_CSV_File");
+            } catch (IOException e) {
+                logger.info("failed while attaching the txt file to report");
+            }
+        }
+
             ThreadContext.clearAll();
-//        // Attach logs to the report
-//        try {
-//            byte[] logBytes = Files.readAllBytes(Paths.get("logs/execution.log"));
-//            scenario.attach(logBytes, "text/plain", "Execution Logs");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        byte[] logBytes = logger.toString().getBytes();
-//        scenario.attach(logBytes, "text/plain", "Execution Logs");
+
     }
 
     @AfterStep

@@ -13,6 +13,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Context {
+
+//***    context class uses Dependency Injection and ThreadLocal to store and retrieve the browser and yaml file path values
+
     public WebDriver driver;
 
     private static ThreadLocal<String> threadBrowser = new ThreadLocal<>();

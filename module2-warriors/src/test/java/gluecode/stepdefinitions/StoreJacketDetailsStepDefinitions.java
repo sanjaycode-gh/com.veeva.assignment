@@ -50,7 +50,7 @@ public class StoreJacketDetailsStepDefinitions extends BaseSteps{
     }
 
     @Then("user saves products title and price details into a text file")
-    public void saveJacketDetailsIntoTextFile(){
+    public void saveJacketDetailsIntoTextFile() throws IOException {
 
         new ShopPage(driver).writeProductDetailsIntoTextFile();
 

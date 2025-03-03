@@ -87,7 +87,8 @@ project-root/
 ### 📊 Reports & Logging
 - **Cucumber Reports** (JSON, HTML)
 - **Log4j2-based Logging**
-- **Cucumber MasterThought for detailed insights**
+- **Cucumber MasterThought for detailed insights** 
+- ** Respective modules Cucumber reports are available at "target/cucumber-reports" folder"
 
 ### 🔄 CI/CD Integration
 - **Jenkins integration** for automated test execution

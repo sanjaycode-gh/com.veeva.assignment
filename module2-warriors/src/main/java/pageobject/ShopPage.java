@@ -11,6 +11,7 @@ import utilities.FileUtils;
 import utilities.SeleniumCommonUtils;
 import utilities.WarriorsDynamicLocators;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class ShopPage extends BasePage{
         }
     }
 
-    public void writeProductDetailsIntoTextFile(){
+    public void writeProductDetailsIntoTextFile() throws IOException {
 
         logger.info("Writing the product priice and title details into txt file");
         new FileUtils().createFile("output.txt");

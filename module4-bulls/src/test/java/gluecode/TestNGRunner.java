@@ -8,7 +8,13 @@ import org.testng.annotations.*;
 
 @CucumberOptions(
         features = "features",
-        glue = {"gluecode/stepdefinitions", "commonhooks"}
+        glue = {"gluecode/stepdefinitions", "commonhooks"},
+        plugin = {
+                "pretty",
+                "json:target/cucumber-reports/cucumber.json", // Generate JSON for reporting
+                "html:target/cucumber-html-report"
+        },
+        monochrome = true
 //        tags = "@duplicateHyperLinks"
 
 )
